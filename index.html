@@ -24,6 +24,7 @@
         .tab-content { display: none; max-width: 800px; margin: 30px auto; background: white; padding: 30px; border-radius: 8px; }
         .tab-content.active { display: block; }
         h2 { color: #C0392B; }
+        h1 { color: #160503; }
         .productos { display: flex; flex-wrap: wrap; gap: 24px; }
         .producto {
             width: 180px;
@@ -94,42 +95,49 @@
 </head>
 <body>
     <header>
-        <h1>Tamales y Más</h1>
-        <p>¡Los mejores tamales, atoles, café y tortas de la ciudad!</p>
+        <h1>Tamales Doña Mire</h1>
+        <h1>¡Los mejores tamales, atoles, café y tortas de la ciudad!
+En Tamales Doña Mire, cada receta tiene historia, cada sabor tiene corazón y cada visita sabe a hogar.
+Ven y disfruta del verdadero sabor guerrerense, hecho con amor familiar.</h1>
     </header>
     <div class="tabs">
-        <button class="tab-btn active" onclick="showTab('info')">Info</button>
-        <button class="tab-btn" onclick="showTab('tamales')">Tamales</button>
-        <button class="tab-btn" onclick="showTab('atolesycafe')">Atoles y Café</button>
-        <button class="tab-btn" onclick="showTab('tortas')">Tortas</button>
-        <button class="tab-btn" onclick="showTab('ubicacion')">Ubicación</button>
+        <button class="tab-btn active" onclick="showTab('Info')">Info</button>
+        <button class="tab-btn" onclick="showTab('Tamales')">Tamales</button>
+        <button class="tab-btn" onclick="showTab('Atolesycafe')">Atoles y Café</button>
+        <button class="tab-btn" onclick="showTab('Tortas')">Tortas</button>
+        <button class="tab-btn" onclick="showTab('Ubicacion')">Ubicación</button>
+        <button class="tab-btn" onclick="showTab('Pedidos')">Pedidos</button>
     </div>
 
-    <div id="info" class="tab-content active">
-        <h2>Bienvenido a Tamales y Más</h2>
-        <p>Ofrecemos tamales tradicionales, deliciosos atoles, café de olla y tortas recién hechas. Visítanos y disfruta de nuestros sabores caseros.</p>
+    <div id="Info" class="tab-content active">
+        <h1>Bienvenido a Tamales Doña Mire</h1>
+        <h2>Somos una familia orgullosamente guerrerense, que comparte con amor los sabores de nuestra tierra.
+Cada día preparamos tamales suaves y llenos de sabor, atoles calientitos, Nescafe aromático y tortas recién hechas, todo con el toque casero que nos caracteriza.
+Nos encanta ver a nuestros clientes disfrutar como en casa, acompañados de un buen café y una sonrisa.
+Ven a visitarnos y déjate conquistar por el auténtico sabor guerrerense que alegra el corazón y el paladar. </h2>
+       
     </div>
-    <div id="tamales" class="tab-content">
+    <div id="Tamales" class="tab-content">
         <h2>Tamales</h2>
         <div class="productos">
             <div class="producto">
-                <img src="https://www.comedera.com/wp-content/uploads/2022/01/tamales-rojos-receta.jpg" alt="Tamal Rojo">
+                <img src="tamalrojo.jpg.jpg" alt="Tamal Rojo">
                 <div>Tamal Rojo</div>
                 <div class="precio">$20.00</div>
             </div>
             <div class="producto">
-                <img src="https://www.comedera.com/wp-content/uploads/2022/01/tamales-verdes-receta.jpg" alt="Tamal Verde">
+                <img src="tamalverde.jpg" alt="Tamal Verde">
                 <div>Tamal Verde</div>
                 <div class="precio">$20.00</div>
             </div>
             <div class="producto">
-                <img src="https://cdn7.kiwilimon.com/recetaimagen/21539/640x426/23360.jpg.webp" alt="Tamal Oaxaqueño">
+                <img src="tamaloaxaqueño.jpg" alt="Tamal Oaxaqueño">
                 <div>Tamal Oaxaqueño</div>
                 <div class="precio">$25.00</div>
             </div>
         </div>
     </div>
-    <div id="atolesycafe" class="tab-content">
+    <div id="Atolesycafe" class="tab-content">
         <h2>Atoles y Café</h2>
         <div style="margin-bottom: 28px;">
             <strong>Atoles:</strong>
@@ -137,40 +145,81 @@
                 <li>Champurrado</li>
                 <li>Fresa</li>
                 <li>Arroz</li>
-            </ul>
-            <img class="img-atole" src="https://assets.unileversolutions.com/recipes-v2/214531.jpg" alt="Atole" />
+                <li>Galleta</li>
+                <li>Vainilla</li>
+                <li>Chocolate</li>
+                <li>Ciruela</li>
+                <li>Arrayan</li>
+                <li>Guayaba</li>
+                </ul>
+            <img class="img-atole" src="atoles.jpg" alt="Atole" />
+            <img class="img-atole" src="atole1.jpg" alt="Atole" />
         </div>
         <div>
             <strong>Café: Nescafé</strong>
             <br>
-            <img class="img-cafe" src="https://www.nescafe.com/mx/sites/default/files/nescafe-clasico-product.png" alt="Nescafé" />
+            <img class="img-cafe" src="cafe.jpg" alt="Nescafé" />
         </div>
     </div>
-    <div id="tortas" class="tab-content">
+    <div id="Tortas" class="tab-content">
         <h2>Tortas</h2>
         <div class="productos">
             <div class="producto">
-                <img src="https://cdn7.kiwilimon.com/recetaimagen/21996/640x426/23348.jpg.webp" alt="Torta de Jamón">
+                <img src="tamaljamon.jpg" alt="Torta de Jamón">
                 <div>Torta de Jamón</div>
                 <div class="precio">$25.00</div>
             </div>
             <div class="producto">
-                <img src="https://www.comedera.com/wp-content/uploads/2022/07/torta-de-milanesa-de-pollo.jpg" alt="Torta de Milanesa">
+                <img src="tortapollo.jpg" alt="Torta De Pollo">
                 <div>Torta de Pollo</div>
                 <div class="precio">$25.00</div>
             </div>
+             <div class="producto">
+                <img src="tortacicirisco.jpg" alt="Torta De Cicirisco">
+                <div>Frijoles Con Chorizo</div>
+                <div class="precio">$20.00</div>
+            </div>
         </div>
     </div>
-    <div id="ubicacion" class="tab-content">
-        <h2>Ubicación</h2>
-        <p>Nos encontramos en:<br>
+    <div id="Ubicacion" class="tab-content">
+        <h1>Ubicación</h1>
+        <h2>Nos encontramos:<br>
        Sobre el libramiento Tabachines enfrente de marisquería "La playita" Tejupilco de Hidalgo, Estado de México</p>
-        <p>Horario: Lunes a sábado, 6:00 am - 11:00 am</p>
+        <p>Horario: Lunes a sábado, 6:00 am - 11:00 am</h2>
         <iframe src="https://www.google.com/maps/embed?pb=!3m2!1ses!2smx!4v1760834546580!5m2!1ses!2smx!6m8!1m7!1sca6jL3kU5yDshaVtgG1oig!2m2!1d18.91153360414404!2d-100.1579067566318!3f306.9750468380674!4f-0.48708161574562325!5f0.7820865974627469" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
+    <div id="Pedidos" class="tab-content">
+        <h2>Pedidos</h2>
+        <div class="productos">
+            <div class="producto">
+                <img src="Atoles11.jpg" alt="">
+                <div>Pedidos de atoles</div>
+                <div class="precio">Manda Whatsapp</div>
+            </div>
+
+            <div class="productos">
+            <div class="producto">
+                <img src="Tamales11.jpg" alt="">
+                <div>Pedidos de Tamales</div>
+                <div class="precio">Manda Whatsapp</div>
+            </div>
+
+
     <footer>
-        &copy; 2025 Tamales y Más | Síguenos en redes sociales @tamales Doña Mire
-    </footer>
+    <div class="footer-content">
+        <h3>Tamales Doña Mire</h3>
+        <p>Tradición guerrerense en cada bocado. Tamales, atoles, café de olla y tortas hechas con amor familiar.</p>
+        <div class="social-links">
+            <a href="https://facebook.com/tamalesdonamire" target="_blank">Facebook</a>
+            <a href="https://instagram.com/tamalesdonamire" target="_blank">Instagram</a>
+            <a href="https://wa.me/5217224940860" target="_blank">WhatsApp</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Tamales Doña Mire | Todos los derechos reservados</p>
+    </div>
+</footer>
+
 
     <!-- WhatsApp Button -->
     <a href="https://wa.me/5217224940860" class="whatsapp-float" target="_blank" 
