@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tamales y Más</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f8f8f8; margin: 0; }
+        header { background: #C0392B; color: white; padding: 30px 0; text-align: center; }
+        .tabs { display: flex; background: #922B21; justify-content: center; }
+        .tab-btn {
+            background: none;
+            border: none;
+            color: white;
+            padding: 16px 24px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .tab-btn.active, .tab-btn:hover {
+            background: #C0392B;
+        }
+        .tab-content { display: none; max-width: 800px; margin: 30px auto; background: white; padding: 30px; border-radius: 8px; }
+        .tab-content.active { display: block; }
+        h2 { color: #C0392B; }
+        .productos { display: flex; flex-wrap: wrap; gap: 24px; }
+        .producto {
+            width: 180px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            text-align: center;
+            padding: 12px;
+            background: #fafafa;
+            box-shadow: 0 2px 8px #eee;
+        }
+        .producto img, .img-atole, .img-cafe {
+            max-width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        .precio {
+            color: #138D75;
+            font-weight: bold;
+            margin: 6px 0 0 0;
+        }
+        .ubicacion { margin-top: 20px; }
+        footer { background: #922B21; color: white; text-align: center; padding: 15px 0; margin-top: 30px; }
+        /* WhatsApp floating button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 38px;
+            box-shadow: 2px 2px 8px #888;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .whatsapp-float:hover {
+            background-color: #128c7e;
+        }
+        .whatsapp-number {
+            display: none;
+            position: fixed;
+            right: 95px;
+            bottom: 40px;
+            background: #25d366;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            z-index: 101;
+            box-shadow: 2px 2px 8px #888;
+        }
+        @media (max-width: 600px) {
+            .productos { flex-direction: column; align-items: center; }
+            .producto { width: 90%; }
+            .tab-content { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tamales y Más</h1>
+        <p>¡Los mejores tamales, atoles, café y tortas de la ciudad!</p>
+    </header>
+    <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('info')">Info</button>
+        <button class="tab-btn" onclick="showTab('tamales')">Tamales</button>
+        <button class="tab-btn" onclick="showTab('atolesycafe')">Atoles y Café</button>
+        <button class="tab-btn" onclick="showTab('tortas')">Tortas</button>
+        <button class="tab-btn" onclick="showTab('ubicacion')">Ubicación</button>
+    </div>
+
+    <div id="info" class="tab-content active">
+        <h2>Bienvenido a Tamales y Más</h2>
+        <p>Ofrecemos tamales tradicionales, deliciosos atoles, café de olla y tortas recién hechas. Visítanos y disfruta de nuestros sabores caseros.</p>
+    </div>
+    <div id="tamales" class="tab-content">
+        <h2>Tamales</h2>
+        <div class="productos">
+            <div class="producto">
+                <img src="https://www.comedera.com/wp-content/uploads/2022/01/tamales-rojos-receta.jpg" alt="Tamal Rojo">
+                <div>Tamal Rojo</div>
+                <div class="precio">$20.00</div>
+            </div>
+            <div class="producto">
+                <img src="https://www.comedera.com/wp-content/uploads/2022/01/tamales-verdes-receta.jpg" alt="Tamal Verde">
+                <div>Tamal Verde</div>
+                <div class="precio">$20.00</div>
+            </div>
+            <div class="producto">
+                <img src="https://cdn7.kiwilimon.com/recetaimagen/21539/640x426/23360.jpg.webp" alt="Tamal Oaxaqueño">
+                <div>Tamal Oaxaqueño</div>
+                <div class="precio">$25.00</div>
+            </div>
+        </div>
+    </div>
+    <div id="atolesycafe" class="tab-content">
+        <h2>Atoles y Café</h2>
+        <div style="margin-bottom: 28px;">
+            <strong>Atoles:</strong>
+            <ul>
+                <li>Champurrado</li>
+                <li>Fresa</li>
+                <li>Arroz</li>
+            </ul>
+            <img class="img-atole" src="https://assets.unileversolutions.com/recipes-v2/214531.jpg" alt="Atole" />
+        </div>
+        <div>
+            <strong>Café: Nescafé</strong>
+            <br>
+            <img class="img-cafe" src="https://www.nescafe.com/mx/sites/default/files/nescafe-clasico-product.png" alt="Nescafé" />
+        </div>
+    </div>
+    <div id="tortas" class="tab-content">
+        <h2>Tortas</h2>
+        <div class="productos">
+            <div class="producto">
+                <img src="https://cdn7.kiwilimon.com/recetaimagen/21996/640x426/23348.jpg.webp" alt="Torta de Jamón">
+                <div>Torta de Jamón</div>
+                <div class="precio">$25.00</div>
+            </div>
+            <div class="producto">
+                <img src="https://www.comedera.com/wp-content/uploads/2022/07/torta-de-milanesa-de-pollo.jpg" alt="Torta de Milanesa">
+                <div>Torta de Pollo</div>
+                <div class="precio">$25.00</div>
+            </div>
+        </div>
+    </div>
+    <div id="ubicacion" class="tab-content">
+        <h2>Ubicación</h2>
+        <p>Nos encontramos en:<br>
+       Sobre el libramiento Tabachines enfrente de marisquería "La playita" Tejupilco de Hidalgo, Estado de México</p>
+        <p>Horario: Lunes a sábado, 6:00 am - 11:00 am</p>
+        <iframe src="https://www.google.com/maps/embed?pb=!3m2!1ses!2smx!4v1760834546580!5m2!1ses!2smx!6m8!1m7!1sca6jL3kU5yDshaVtgG1oig!2m2!1d18.91153360414404!2d-100.1579067566318!3f306.9750468380674!4f-0.48708161574562325!5f0.7820865974627469" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <footer>
+        &copy; 2025 Tamales y Más | Síguenos en redes sociales @tamales Doña Mire
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/5217224940860" class="whatsapp-float" target="_blank" 
+       onmouseover="document.getElementById('wa-number').style.display='block'" 
+       onmouseout="document.getElementById('wa-number').style.display='none'">
+        <svg viewBox="0 0 32 32" width="36" height="36" style="margin:auto;display:block;">
+            <circle cx="16" cy="16" r="16" fill="#25d366"/>
+            <path d="M25.5,6.5A12,12,0,0,0,6,25.6l-1.2,4.4a1,1,0,0,0,1.2,1.2l4.4-1.2A12,12,0,1,0,25.5,6.5ZM16,28A12,12,0,1,1,28,16,12,12,0,0,1,16,28Z" fill="#fff"/>
+            <path d="M22.4,19.7c-.3-.2-1.9-.9-2.2-1s-.5-.1-.7.1l-.9,1c-.2.2-.4.2-.7.1-1.7-.7-3.2-2.3-3.9-4.1-.1-.2,0-.4.1-.6l.8-.9c.2-.2.2-.4.1-.7s-.8-2-1-2.2-.4-.2-.7-.2h-1c-.2,0-.5,0-.7.2s-1.1,1.2-1.1,2.9c0,2.7,2.3,6.1,6.6,7.2.4.1.7,0,.9-.3l.6-.8c.1-.2.1-.4,0-.7Z" fill="#fff"/>
+        </svg>
+    </a>
+    <div id="wa-number" class="whatsapp-number">+52 1 722 494 0860</div>
+
+    <script>
+        function showTab(tabId) {
+            // Oculta todas las pestañas
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            // Muestra la pestaña seleccionada
+            document.getElementById(tabId).classList.add('active');
+            // Activa el botón de la pestaña
+            const index = ['info', 'tamales', 'atolesycafe', 'tortas', 'ubicacion'].indexOf(tabId);
+            document.querySelectorAll('.tab-btn')[index].classList.add('active');
+        }
+    </script>
+</body>
+</html>
