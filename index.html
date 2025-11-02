@@ -3,246 +3,640 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tamales y Más</title>
+    <title>Tamales Doña Mire - Sabor Guerrerense</title>
     <style>
-        body { font-family: Arial, sans-serif; background: #f8f8f8; margin: 0; }
-        header { background: #C0392B; color: white; padding: 30px 0; text-align: center; }
-        .tabs { display: flex; background: #922B21; justify-content: center; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
+            background-attachment: fixed;
+        }
+        
+        header { 
+            background: linear-gradient(135deg, #134e4a 0%, #065f46 50%, #047857 100%);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        h1 {
+            font-size: 3em;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInDown 1s ease;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        header p {
+            font-size: 1.2em;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .tabs { 
+            display: flex;
+            background: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%);
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
         .tab-btn {
             background: none;
             border: none;
             color: white;
-            padding: 16px 24px;
+            padding: 18px 28px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: bold;
-            transition: background 0.2s;
+            transition: all 0.3s ease;
+            position: relative;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
-        .tab-btn.active, .tab-btn:hover {
-            background: #C0392B;
+        
+        .tab-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: #fbbf24;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
         }
-        .tab-content { display: none; max-width: 800px; margin: 30px auto; background: white; padding: 30px; border-radius: 8px; }
-        .tab-content.active { display: block; }
-        h2 { color: #C0392B; }
-        h1 { color: #160503; }
-        .productos { display: flex; flex-wrap: wrap; gap: 24px; }
-        .producto {
-            width: 180px;
-            border: 1px solid #eee;
-            border-radius: 8px;
+        
+        .tab-btn:hover::after {
+            width: 80%;
+        }
+        
+        .tab-btn.active {
+            background: rgba(251, 191, 36, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .tab-btn:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-2px);
+        }
+        
+        .tab-content { 
+            display: none;
+            max-width: 1200px;
+            margin: 40px auto;
+            background: rgba(255,255,255,0.97);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .tab-content.active { 
+            display: block;
+        }
+        
+        h2 { 
+            color: #0f766e;
+            font-size: 2.5em;
+            margin-bottom: 30px;
             text-align: center;
-            padding: 12px;
-            background: #fafafa;
-            box-shadow: 0 2px 8px #eee;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
+        
+        .info-section {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 30px;
+            border-radius: 15px;
+            line-height: 1.8;
+            font-size: 1.1em;
+            color: #333;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-left: 5px solid #0f766e;
+        }
+        
+        .productos { 
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .producto {
+            border-radius: 20px;
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #14b8a6;
+        }
+        
+        .producto::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(20, 184, 166, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .producto:hover::before {
+            opacity: 1;
+        }
+        
+        .producto:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(20, 184, 166, 0.3);
+            border-color: #0f766e;
+        }
+        
         .producto img, .img-atole, .img-cafe {
-            max-width: 100%;
-            height: 120px;
+            width: 100%;
+            height: 200px;
             object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 8px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
         }
-        .precio {
-            color: #138D75;
+        
+        .producto:hover img {
+            transform: scale(1.05);
+        }
+        
+        .producto-nombre {
+            font-size: 1.4em;
             font-weight: bold;
-            margin: 6px 0 0 0;
+            color: #134e4a;
+            margin: 10px 0;
         }
-        .ubicacion { margin-top: 20px; }
-        footer { background: #922B21; color: white; text-align: center; padding: 15px 0; margin-top: 30px; }
-        /* WhatsApp floating button */
+        
+        .precio {
+            color: #047857;
+            font-weight: bold;
+            font-size: 1.6em;
+            margin: 10px 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .descripcion {
+            color: #4b5563;
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+        
+        .atoles-section {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #0f766e;
+        }
+        
+        .atoles-section ul {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .atoles-section li {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            color: #0f766e;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .atoles-section li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(20, 184, 166, 0.3);
+            border-color: #14b8a6;
+        }
+        
+        .imagenes-atoles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .ubicacion-content {
+            text-align: center;
+        }
+        
+        .ubicacion-info {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            font-size: 1.1em;
+            border-left: 5px solid #0f766e;
+        }
+        
+        iframe {
+            width: 100%;
+            max-width: 800px;
+            height: 450px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 3px solid #14b8a6;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, #134e4a 0%, #065f46 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .footer-content h3 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        
+        .footer-content p {
+            max-width: 600px;
+            margin: 0 auto 20px;
+            line-height: 1.6;
+        }
+        
+        .social-links {
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 12px 25px;
+            background: rgba(251, 191, 36, 0.3);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            border: 2px solid transparent;
+        }
+        
+        .social-links a:hover {
+            background: rgba(251, 191, 36, 0.5);
+            transform: translateY(-3px);
+            border-color: #fbbf24;
+        }
+        
+        .footer-bottom {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(251, 191, 36, 0.3);
+        }
+        
         .whatsapp-float {
             position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 25px;
-            right: 25px;
-            background-color: #25d366;
+            width: 70px;
+            height: 70px;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
             color: #FFF;
-            border-radius: 50px;
+            border-radius: 50%;
             text-align: center;
-            font-size: 38px;
-            box-shadow: 2px 2px 8px #888;
-            z-index: 100;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
+            z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: all 0.3s ease;
+            animation: bounce 2s infinite;
         }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-15px);
+            }
+            60% {
+                transform: translateY(-7px);
+            }
+        }
+        
         .whatsapp-float:hover {
-            background-color: #128c7e;
+            background: linear-gradient(135deg, #128c7e 0%, #075e54 100%);
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.7);
         }
+        
         .whatsapp-number {
             display: none;
             position: fixed;
-            right: 95px;
-            bottom: 40px;
-            background: #25d366;
+            right: 110px;
+            bottom: 50px;
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
             color: white;
-            padding: 8px 18px;
-            border-radius: 20px;
+            padding: 12px 20px;
+            border-radius: 25px;
             font-size: 1.1rem;
             font-weight: bold;
-            z-index: 101;
-            box-shadow: 2px 2px 8px #888;
+            z-index: 999;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            animation: slideIn 0.3s ease;
         }
-        @media (max-width: 600px) {
-            .productos { flex-direction: column; align-items: center; }
-            .producto { width: 90%; }
-            .tab-content { padding: 15px; }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .pedidos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            header p {
+                font-size: 1em;
+            }
+            
+            .tab-content {
+                padding: 20px;
+                margin: 20px 10px;
+            }
+            
+            .productos {
+                grid-template-columns: 1fr;
+            }
+            
+            .tab-btn {
+                padding: 14px 18px;
+                font-size: 0.95rem;
+            }
+            
+            iframe {
+                height: 300px;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Tamales Doña Mire</h1>
-        <h1>¡Los mejores tamales, atoles, café y tortas de la ciudad!
-En Tamales Doña Mire, cada receta tiene historia, cada sabor tiene corazón y cada visita sabe a hogar.
-Ven y disfruta del verdadero sabor guerrerense, hecho con amor familiar.</h1>
+        <h1>🌮 Tamales Doña Mire 🌮</h1>
+        <p>¡Los mejores tamales, atoles, café y tortas de la ciudad!<br>
+        En Tamales Doña Mire, cada receta tiene historia, cada sabor tiene corazón y cada visita sabe a hogar.<br>
+        Ven y disfruta del verdadero sabor guerrerense, hecho con amor familiar.</p>
     </header>
+    
     <div class="tabs">
-        <button class="tab-btn active" onclick="showTab('Info')">Info</button>
-        <button class="tab-btn" onclick="showTab('Tamales')">Tamales</button>
-        <button class="tab-btn" onclick="showTab('Atolesycafe')">Atoles y Café</button>
-        <button class="tab-btn" onclick="showTab('Tortas')">Tortas</button>
-        <button class="tab-btn" onclick="showTab('Ubicacion')">Ubicación</button>
-        <button class="tab-btn" onclick="showTab('Pedidos')">Pedidos</button>
+        <button class="tab-btn active" onclick="showTab('Info')">🏠 Info</button>
+        <button class="tab-btn" onclick="showTab('Tamales')">🌮 Tamales</button>
+        <button class="tab-btn" onclick="showTab('Atolesycafe')">☕ Atoles y Café</button>
+        <button class="tab-btn" onclick="showTab('Tortas')">🥖 Tortas</button>
+        <button class="tab-btn" onclick="showTab('Ubicacion')">📍 Ubicación</button>
+        <button class="tab-btn" onclick="showTab('Pedidos')">📱 Pedidos</button>
     </div>
 
     <div id="Info" class="tab-content active">
-        <h1>Bienvenido a Tamales Doña Mire</h1>
-        <h2>Somos una familia orgullosamente guerrerense, que comparte con amor los sabores de nuestra tierra.
-Cada día preparamos tamales suaves y llenos de sabor, atoles calientitos, Nescafe aromático y tortas recién hechas, todo con el toque casero que nos caracteriza.
-Nos encanta ver a nuestros clientes disfrutar como en casa, acompañados de un buen café y una sonrisa.
-Ven a visitarnos y déjate conquistar por el auténtico sabor guerrerense que alegra el corazón y el paladar. </h2>
-       
+        <h2>Bienvenido a Tamales Doña Mire</h2>
+        <div class="info-section">
+            <p><strong>Somos una familia orgullosamente guerrerense</strong>, que comparte con amor los sabores de nuestra tierra.</p>
+            <p>Cada día preparamos <strong>tamales suaves y llenos de sabor</strong>, atoles calientitos, Nescafé aromático y tortas recién hechas, todo con el toque casero que nos caracteriza.</p>
+            <p>Nos encanta ver a nuestros clientes disfrutar como en casa, acompañados de un buen café y una sonrisa.</p>
+            <p><strong>Ven a visitarnos y déjate conquistar por el auténtico sabor guerrerense que alegra el corazón y el paladar.</strong> ❤️</p>
+        </div>
     </div>
+    
     <div id="Tamales" class="tab-content">
-        <h2>Tamales</h2>
+        <h2>🌮 Nuestros Deliciosos Tamales</h2>
         <div class="productos">
             <div class="producto">
                 <img src="tamalrojo.jpg.jpg" alt="Tamal Rojo">
-                <div>Tamal Rojo</div>
+                <div class="producto-nombre">Tamal Rojo</div>
                 <div class="precio">$20.00</div>
+                <div class="descripcion">Relleno de carne de cerdo o pollo guisada en salsa roja, envuelto en hoja de maíz. Su sabor es intenso, ligeramente picante y muy aromático, típico de la cocina mexicana.</div>
             </div>
             <div class="producto">
                 <img src="tamalverde.jpg" alt="Tamal Verde">
-                <div>Tamal Verde</div>
+                <div class="producto-nombre">Tamal Verde</div>
                 <div class="precio">$20.00</div>
+                <div class="descripcion">Una de las variedades más populares de tamales mexicanos. Relleno de pollo o cerdo bañado en salsa verde, envuelto en hoja de maíz y cocido al vapor.</div>
             </div>
             <div class="producto">
                 <img src="tamaloaxaqueño.jpg" alt="Tamal Oaxaqueño">
-                <div>Tamal Oaxaqueño</div>
+                <div class="producto-nombre">Tamal Oaxaqueño</div>
                 <div class="precio">$25.00</div>
+                <div class="descripcion">Variedad tradicional originaria del estado de Oaxaca. Se distingue por estar envuelto en hoja de plátano, lo que le da un sabor único e inigualable.</div>
             </div>
         </div>
     </div>
+    
     <div id="Atolesycafe" class="tab-content">
-        <h2>Atoles y Café</h2>
-        <div style="margin-bottom: 28px;">
-            <strong>Atoles:</strong>
+        <h2>☕ Atoles y Café</h2>
+        <div class="atoles-section">
+            <h3 style="color: #0f766e; margin-bottom: 20px;">🥤 Variedad de Atoles</h3>
             <ul>
-                <li>Champurrado</li>
-                <li>Fresa</li>
-                <li>Arroz</li>
-                <li>Galleta</li>
-                <li>Vainilla</li>
-                <li>Chocolate</li>
-                <li>Ciruela</li>
-                <li>Arrayan</li>
-                <li>Guayaba</li>
-                </ul>
-            <img class="img-atole" src="atoles.jpg" alt="Atole" />
-            <img class="img-atole" src="atole1.jpg" alt="Atole" />
+                <li>🍫 Champurrado</li>
+                <li>🍓 Fresa</li>
+                <li>🍚 Arroz</li>
+                <li>🍪 Galleta</li>
+                <li>🌟 Vainilla</li>
+                <li>🍫 Chocolate</li>
+                <li>🟣 Ciruela</li>
+                <li>🔴 Arrayán</li>
+                <li>🍑 Guayaba</li>
+            </ul>
+            <div class="imagenes-atoles">
+                <img class="img-atole" src="atoles.jpg" alt="Atoles deliciosos" />
+                <img class="img-atole" src="atole1.jpg" alt="Más atoles" />
+            </div>
         </div>
-        <div>
-            <strong>Café: Nescafé</strong>
-            <br>
-            <img class="img-cafe" src="cafe.jpg" alt="Nescafé" />
+        <div class="atoles-section">
+            <h3 style="color: #0f766e; margin-bottom: 20px;">☕ Café Nescafé</h3>
+            <p style="margin-bottom: 15px;">Aromático y calientito, perfecto para acompañar tus tamales</p>
+            <img class="img-cafe" src="cafe.jpg" alt="Nescafé" style="width: 100%; max-width: 400px; margin: 0 auto; display: block;" />
         </div>
     </div>
+    
     <div id="Tortas" class="tab-content">
-        <h2>Tortas</h2>
+        <h2>🥖 Tortas Recién Hechas</h2>
         <div class="productos">
             <div class="producto">
                 <img src="tamaljamon.jpg" alt="Torta de Jamón">
-                <div>Torta de Jamón</div>
+                <div class="producto-nombre">Torta de Jamón</div>
                 <div class="precio">$25.00</div>
+                <div class="descripcion">Deliciosa torta preparada con jamón de la mejor calidad y nuestro toque especial.</div>
             </div>
             <div class="producto">
-                <img src="tortapollo.jpg" alt="Torta De Pollo">
-                <div>Torta de Pollo</div>
+                <img src="tortapollo.jpg" alt="Torta de Pollo">
+                <div class="producto-nombre">Torta de Pollo</div>
                 <div class="precio">$25.00</div>
+                <div class="descripcion">Torta rellena con pollo jugoso, acompañada de ingredientes frescos que hacen de cada bocado una delicia.</div>
             </div>
-             <div class="producto">
-                <img src="tortacicirisco.jpg" alt="Torta De Cicirisco">
-                <div>Frijoles Con Chorizo</div>
+            <div class="producto">
+                <img src="tortacicirisco.jpg" alt="Torta de Frijoles con Chorizo">
+                <div class="producto-nombre">Frijoles con Chorizo</div>
                 <div class="precio">$20.00</div>
+                <div class="descripcion">La combinación perfecta de frijoles refritos con chorizo casero en un pan suave y delicioso.</div>
             </div>
         </div>
     </div>
+    
     <div id="Ubicacion" class="tab-content">
-        <h1>Ubicación</h1>
-        <h2>Nos encontramos:<br>
-       Sobre el libramiento Tabachines enfrente de marisquería "La playita" Tejupilco de Hidalgo, Estado de México</p>
-        <p>Horario: Lunes a sábado, 6:00 am - 11:00 am</h2>
-        <iframe src="https://www.google.com/maps/embed?pb=!3m2!1ses!2smx!4v1760834546580!5m2!1ses!2smx!6m8!1m7!1sca6jL3kU5yDshaVtgG1oig!2m2!1d18.91153360414404!2d-100.1579067566318!3f306.9750468380674!4f-0.48708161574562325!5f0.7820865974627469" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="ubicacion-content">
+            <h2>📍 Encuéntranos Aquí</h2>
+            <div class="ubicacion-info">
+                <p><strong>📌 Dirección:</strong><br>
+                Sobre el libramiento Tabachines<br>
+                Enfrente de marisquería "La Playita"<br>
+                Tejupilco de Hidalgo, Estado de México</p>
+                <p><strong>🕐 Horario:</strong><br>
+                Lunes a Sábado<br>
+                6:00 am - 11:00 am</p>
+            </div>
+            <iframe src="https://www.google.com/maps/embed?pb=!3m2!1ses!2smx!4v1760834546580!5m2!1ses!2smx!6m8!1m7!1sca6jL3kU5yDshaVtgG1oig!2m2!1d18.91153360414404!2d-100.1579067566318!3f306.9750468380674!4f-0.48708161574562325!5f0.7820865974627469" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
     </div>
+    
     <div id="Pedidos" class="tab-content">
-        <h2>Pedidos</h2>
-        <div class="productos">
+        <h2>📱 Haz Tu Pedido</h2>
+        <div class="info-section" style="margin-bottom: 30px;">
+            <p><strong>¡Ordena con anticipación!</strong></p>
+            <p>Mándanos un WhatsApp y prepararemos tu pedido con todo el amor y sabor que nos caracteriza.</p>
+            <p>Atención personalizada y entregas frescas todos los días.</p>
+        </div>
+        <div class="pedidos-grid">
             <div class="producto">
-                <img src="Atoles11.jpg" alt="">
-                <div>Pedidos de atoles</div>
-                <div class="precio">Manda Whatsapp</div>
+                <img src="Atoles11.jpg" alt="Pedidos de atoles">
+                <div class="producto-nombre">Pedidos de Atoles</div>
+                <div class="precio"> Manda WhatsApp</div>
+                <div class="descripcion">Todos los sabores disponibles para tu pedido. Ideal para fiestas y eventos.</div>
             </div>
-
-            <div class="productos">
             <div class="producto">
-                <img src="Tamales11.jpg" alt="">
-                <div>Pedidos de Tamales</div>
-                <div class="precio">Manda Whatsapp</div>
+                <img src="Tamales11.jpg" alt="Pedidos de tamales">
+                <div class="producto-nombre">Pedidos de Tamales</div>
+                <div class="precio"> Manda WhatsApp</div>
+                <div class="descripcion">Docenas de tamales frescos y deliciosos. ¡Perfectos para cualquier ocasión!</div>
             </div>
-
+        </div>
+    </div>
 
     <footer>
-    <div class="footer-content">
-        <h3>Tamales Doña Mire</h3>
-        <p>Tradición guerrerense en cada bocado. Tamales, atoles, café de olla y tortas hechas con amor familiar.</p>
-        <div class="social-links">
-            <a href="https://facebook.com/tamalesdonamire" target="_blank">Facebook</a>
-            <a href="https://instagram.com/tamalesdonamire" target="_blank">Instagram</a>
-            <a href="https://wa.me/5217224940860" target="_blank">WhatsApp</a>
+        <div class="footer-content">
+            <h3>🌮 Tamales Doña Mire </h3>
+            <p>Tradición guerrerense en cada bocado. Tamales, atoles, café y tortas hechas con amor familiar.</p>
+            <div class="social-links">
+                <a href="https://facebook.com/tamalesdonamire" target="_blank">📘 Facebook</a>
+                <a href="https://instagram.com/tamalesdonamire" target="_blank">📸 Instagram</a>
+                <a href="https://wa.me/5217224940860" target="_blank">💬 WhatsApp</a>
+            </div>
         </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2025 Tamales Doña Mire | Todos los derechos reservados</p>
-    </div>
-</footer>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Tamales Doña Mire | Todos los derechos reservados</p>
+            <p>Hecho con ❤️ en Guerrero, México</p>
+        </div>
+    </footer>
 
-
-    <!-- WhatsApp Button -->
     <a href="https://wa.me/5217224940860" class="whatsapp-float" target="_blank" 
        onmouseover="document.getElementById('wa-number').style.display='block'" 
        onmouseout="document.getElementById('wa-number').style.display='none'">
-        <svg viewBox="0 0 32 32" width="36" height="36" style="margin:auto;display:block;">
-            <circle cx="16" cy="16" r="16" fill="#25d366"/>
-            <path d="M25.5,6.5A12,12,0,0,0,6,25.6l-1.2,4.4a1,1,0,0,0,1.2,1.2l4.4-1.2A12,12,0,1,0,25.5,6.5ZM16,28A12,12,0,1,1,28,16,12,12,0,0,1,16,28Z" fill="#fff"/>
-            <path d="M22.4,19.7c-.3-.2-1.9-.9-2.2-1s-.5-.1-.7.1l-.9,1c-.2.2-.4.2-.7.1-1.7-.7-3.2-2.3-3.9-4.1-.1-.2,0-.4.1-.6l.8-.9c.2-.2.2-.4.1-.7s-.8-2-1-2.2-.4-.2-.7-.2h-1c-.2,0-.5,0-.7.2s-1.1,1.2-1.1,2.9c0,2.7,2.3,6.1,6.6,7.2.4.1.7,0,.9-.3l.6-.8c.1-.2.1-.4,0-.7Z" fill="#fff"/>
+        <svg viewBox="0 0 32 32" width="40" height="40">
+            <path d="M16 0C7.163 0 0 7.163 0 16c0 2.825.738 5.488 2.025 7.788L0 32l8.4-2.025C10.7 31.262 13.313 32 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.5c-2.537 0-4.95-.7-7-1.913l-.5-.3-5.175 1.325 1.35-4.938-.325-.525A13.425 13.425 0 012.5 16C2.5 8.537 8.537 2.5 16 2.5S29.5 8.537 29.5 16 23.463 29.5 16 29.5z" fill="#fff"/>
+            <path d="M22.4 19.7c-.3-.2-1.9-.9-2.2-1s-.5-.1-.7.1l-.9 1c-.2.2-.4.2-.7.1-1.7-.7-3.2-2.3-3.9-4.1-.1-.2 0-.4.1-.6l.8-.9c.2-.2.2-.4.1-.7s-.8-2-1-2.2-.4-.2-.7-.2h-1c-.2 0-.5 0-.7.2s-1.1 1.2-1.1 2.9c0 2.7 2.3 6.1 6.6 7.2.4.1.7 0 .9-.3l.6-.8c.1-.2.1-.4 0-.7z" fill="#fff"/>
         </svg>
     </a>
     <div id="wa-number" class="whatsapp-number">+52 1 722 494 0860</div>
 
     <script>
         function showTab(tabId) {
-            // Oculta todas las pestañas
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            // Muestra la pestaña seleccionada
             document.getElementById(tabId).classList.add('active');
-            // Activa el botón de la pestaña
-            const index = ['info', 'tamales', 'atolesycafe', 'tortas', 'ubicacion'].indexOf(tabId);
-            document.querySelectorAll('.tab-btn')[index].classList.add('active');
+            
+            const tabs = ['Info', 'Tamales', 'Atolesycafe', 'Tortas', 'Ubicacion', 'Pedidos'];
+            const index = tabs.indexOf(tabId);
+            if (index !== -1) {
+                document.querySelectorAll('.tab-btn')[index].classList.add('active');
+            }
         }
     </script>
 </body>
